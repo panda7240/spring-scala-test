@@ -38,4 +38,12 @@ public class TestScalaController extends AbstractControllerTest{
 			.andDo(MockMvcResultHandlers.print());
 	}
 	
+	@Test
+	public void testAddUser() throws Exception {
+		String content = "{\"name\":\"liujx\",\"age\":25,\"flag\":true}";
+		this.mockMvc.perform(MockMvcRequestBuilders.post("/user/add").contentType(MediaType.APPLICATION_JSON_VALUE).content(content))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andDo(MockMvcResultHandlers.print());
+	}
+	
 }
