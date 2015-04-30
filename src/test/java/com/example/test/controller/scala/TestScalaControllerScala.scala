@@ -1,11 +1,11 @@
-package com.example.controller.scala
+package com.example.test.controller.scala
 
-import com.example.AbstractControllerTest
 import org.junit.Test
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.http.MediaType
+import com.example.test.AbstractControllerTest
 
 class TestScalaControllerScala extends AbstractControllerTest{
 

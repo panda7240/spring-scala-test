@@ -11,19 +11,19 @@ import scala.beans.BeanProperty
 case class User() {
   
   @BeanProperty
-  var name: String = "";
+  var name: String = _
   
   @BeanProperty
-  var age : Int = 0;
+  var age : Int = _
   
   @BeanProperty
-  var flag: Boolean = false;
+  var flag: Boolean = _
   
   def this(name: String, age: Int, flag: Boolean) = {
-    this();
-    this.name = name;
-    this.age = age;
-    this.flag = flag;
+    this()
+    this.name = name
+    this.age = age
+    this.flag = flag
   }
   
 }

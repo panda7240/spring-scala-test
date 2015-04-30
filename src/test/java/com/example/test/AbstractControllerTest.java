@@ -1,4 +1,4 @@
-package com.example;
+package com.example.test;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -9,6 +9,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.example.Application;
 
 
 /**

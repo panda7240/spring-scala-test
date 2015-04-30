@@ -7,18 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMethod
-
 import com.example.entity.User
-
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
+import org.springframework.beans.factory.annotation.Value
 
 
 @RestController
 class ScalaController {
   
   var log = LoggerFactory.getLogger(this.getClass)
+  
+  @Value("${app.name}")
+  var appName: String = _
   
   /**
    * 测试字符串的返回
@@ -27,7 +29,7 @@ class ScalaController {
   @RequestMapping(value = Array("/scala"), method = Array(RequestMethod.GET))
   @ResponseBody
   def helloScala() = {
-    "Hello Scala";
+    "Hello " + appName;
   }
   
   /**
