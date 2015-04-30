@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession
 import org.springframework.beans.factory.annotation.Value
 import org.slf4j.LoggerFactory
 import org.springframework.boot.logging.logback.LogbackConfigurator
+import com.example.service.UserService
+import org.springframework.beans.factory.annotation.Autowire
+import org.springframework.beans.factory.annotation.Autowired
 
 @RestController
 class ScalaController {
@@ -24,6 +27,9 @@ class ScalaController {
   
   @Value("${logging.file}")
   var logFileName: String = _
+  
+  @Autowired
+  var userService: UserService = _
   
   /**
    * 测试字符串的返回
@@ -57,6 +63,7 @@ class ScalaController {
   def param(@PathVariable("name") name: String, session: HttpSession) = {
     var user = new User(name, 1, false);
     log.info(user.toString());
+    userService.addUser(user);
     session.setAttribute("user", user);
     user
   }
