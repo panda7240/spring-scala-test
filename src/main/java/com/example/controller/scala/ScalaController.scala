@@ -16,6 +16,9 @@ import org.springframework.boot.logging.logback.LogbackConfigurator
 import com.example.service.UserService
 import org.springframework.beans.factory.annotation.Autowire
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.jpa.domain.Specifications
+import org.springframework.data.jpa.domain.Specification
 
 @RestController
 class ScalaController {
@@ -90,6 +93,25 @@ class ScalaController {
     log.info("===========" + user.age)
     user
   }
- 
+  
+  /**
+   * 分页查询
+   * Pages are zero indexed , thus providing 0 for {@code page} will return the first
+   */
+  @RequestMapping(value = Array("/user/all/{page}/{size}"), method = Array(RequestMethod.GET))
+  @ResponseBody
+  def findAll(@PathVariable page: Int = 0, @PathVariable size: Int = 20) = {
+    val pageRequest = new PageRequest(page, size)
+    userService.findAll(pageRequest)
+  }
+  
+  
+  @RequestMapping(value = Array("/user/all/{page}/{size}"), method = Array(RequestMethod.GET))
+  @ResponseBody
+  def findAllBy(@PathVariable page: Int = 0, @PathVariable size: Int = 20) = {   
+    val userParam: User = new User()
+    userParam.setName("liujx")
+    userService.findAll(userParam.toPredicate(root, query, cb), new PageRequest(page, size))
+  }
   
 }
