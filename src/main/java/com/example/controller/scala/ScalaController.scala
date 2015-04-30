@@ -1,6 +1,5 @@
 package com.example.controller.scala
 
-import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -12,15 +11,19 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
 import org.springframework.beans.factory.annotation.Value
-
+import org.slf4j.LoggerFactory
+import org.springframework.boot.logging.logback.LogbackConfigurator
 
 @RestController
 class ScalaController {
   
-  var log = LoggerFactory.getLogger(this.getClass)
+  val log = LoggerFactory.getLogger(this.getClass)
   
   @Value("${app.name}")
   var appName: String = _
+  
+  @Value("${logging.file}")
+  var logFileName: String = _
   
   /**
    * 测试字符串的返回
@@ -29,6 +32,7 @@ class ScalaController {
   @RequestMapping(value = Array("/scala"), method = Array(RequestMethod.GET))
   @ResponseBody
   def helloScala() = {
+    log.info("------------" + logFileName);
     "Hello " + appName;
   }
   
