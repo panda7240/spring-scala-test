@@ -106,12 +106,12 @@ class ScalaController {
   }
   
   
-  @RequestMapping(value = Array("/user/all/{page}/{size}"), method = Array(RequestMethod.GET))
+  @RequestMapping(value = Array("/user/condition/{page}/{size}"), method = Array(RequestMethod.GET))
   @ResponseBody
   def findAllBy(@PathVariable page: Int = 0, @PathVariable size: Int = 20) = {   
     val userParam: User = new User()
     userParam.setName("liujx")
-    userService.findAll(userParam.toPredicate(root, query, cb), new PageRequest(page, size))
+    userService.findAll(userParam, new PageRequest(page, size))
   }
   
 }
